@@ -1,0 +1,180 @@
+/* globel rules  */
+.fs-11 {
+  font-size: 0.8rem;
+}
+.main-txt-color {
+  color: #ffffffe6;
+}
+body {
+  font-family: "Sora", sans-serif;
+  background-color: #101010;
+}
+
+/* start header */
+header i {
+  color: #f4dc73;
+}
+/* end header */
+
+/* start statistics bar */
+.statistics .container::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 12px;
+  width: calc(100% - 24px);
+  height: 1px;
+  background-color: #ffffff33;
+}
+
+.easy-btn,
+.medium-btn,
+.hard-btn,
+.set-time,
+.passege {
+  --bs-btn-bg: transparent;
+  --bs-body-color: #fff;
+  --bs-btn-hover-bg: transparent;
+  --bs-btn-hover-color: #4ca6ff;
+  --bs-btn-hover-border-color: #4ca6ff;
+}
+/* end statistics bar */
+
+/* start typing box section */
+.typing-area {
+  font-family: "Sora", sans-serif;
+}
+
+.acurrecy-value {
+  color: #d64d5b;
+}
+
+.time-value {
+  color: #f4dc73;
+}
+
+.typing-box {
+  position: relative;
+  width: 100%;
+  background-color: #0f0f0f;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* CONTENT THAT WILL BE BLURRED */
+.typing-content {
+  position: relative;
+  min-height: 160px;
+}
+
+/* Blur state (هتتحكم فيها بالـ JS) */
+.typing-content.blurred {
+  filter: blur(6px);
+  pointer-events: none;
+}
+
+/* Text Layer */
+.text-layer {
+  color: #8f8f8f;
+  font-size: 20px;
+  line-height: 1.8;
+  word-wrap: break-word;
+}
+
+textarea {
+  opacity: 0;
+  position: absolute;
+}
+
+/* Active character (cursor) */
+.char.active {
+  background-color: #ffffff;
+  color: #000000;
+  border-radius: 2px;
+}
+
+/* Words */
+.word {
+  margin-right: 6px;
+}
+
+/* Input Layer */
+.input-layer {
+  position: absolute;
+  inset: -2px;
+  width: 100%;
+  height: calc(100% - 48px);
+  background: transparent;
+  color: #ffffff;
+  caret-color: #ffffff;
+  border: none;
+  outline: none;
+  resize: none;
+  font-size: 20px;
+  line-height: 1.8;
+  font-family: inherit;
+  caret-color: transparent;
+}
+.char.active {
+  background-color: #3b3b3b;
+  border-radius: 4px;
+}
+/* OVERLAY */
+.start-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+  gap: 6px;
+
+  background-color: rgba(15, 15, 15, 0.55);
+}
+
+.start-overlay p {
+  font-size: 14px;
+  color: #d0d0d0;
+}
+
+.restart-btn-custom {
+  --bs-btn-bg: #262626;
+  --bs-body-color: #fff;
+  --bs-btn-hover-bg: #262626;
+  --bs-btn-hover-color: #fff;
+}
+
+/* end typing box section */
+/* ---------- Check Circle ---------- */
+
+.complete-icon {
+  border: 10px solid #20402c;
+  outline: 10px solid #172219;
+  border-radius: 50%;
+}
+
+.wpm-box,
+.accuracy-box,
+.chars-box {
+  border: 3px solid #3a3a3a;
+  width: 120px;
+}
+
+.goagain-btn {
+  --bs-btn-bg: #fff;
+  --bs-btn-hover-border-color: #fff;
+  --bs-btn-hover-bg: #fff;
+}
+
+.correct {
+  color: #4dd67b;
+}
+.incorrect {
+  color: #d64d5b;
+  border-bottom: 2px solid #d64d5b;
+}

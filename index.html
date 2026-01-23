@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- ==== site title === -->
+    <title>Spead Test</title>
+    <!-- === importing fonts === -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap" rel="stylesheet">
+    <!-- === importing stylesheets === -->
+    <!-- ==== FONT AWESOME ==== -->
+    <link rel="stylesheet" href="./css/all.css" />
+    <!-- ==== BOOTSTRAP ==== -->
+    <link rel="stylesheet" href="./css/bootstrap-5.3.8-dist/css/bootstrap.min.css">
+    <!-- ==== CUSTOM STYLESHEET ==== -->
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <!-- ======= MAIN CONTAINER ======= -->
+    <!-- === start of header == -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
+            <div class="container">
+                <!-- Logo + Title -->
+                <a class="navbar-brand d-flex align-items-center" href="#">
+                    <img src="./imges/Vector.png" alt="logo image" width="30" height="30" class="me-2">
+                    <div class="d-flex flex-column">
+                        <h1 class="mb-0 fs-6 text-white">Typing Speed Test</h1>
+                        <small class=" fw-normal fs-11 main-txt-color">Type as Fast as You Can in 60 seconds</small>
+                    </div>
+                </a>
+
+                <!-- Toggler for mobile -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+                    aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Navbar links/text -->
+                <div class="person-goal collapse navbar-collapse justify-content-end" id="navbarText">
+                    <p class="fs-11 main-txt-color"><i class="fa-solid fa-trophy me-2 text-gold"></i>Personal Best:
+                        <span>92 WPM</span>
+                    </p>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- === end of header === -->
+
+
+    <!-- === start statistics bar === -->
+    <section class="statistics stats-bar py-3">
+        <div class="container position-relative pb-2">
+            <div class="row align-items-center gy-3">
+
+                <!-- Left Stats -->
+                <div class="col-lg-6">
+                    <div class="d-flex flex-wrap gap-4 stats-left">
+                        <div class="stat-item">
+                            <span class="label main-txt-color">WPM:</span>
+                            <span class="wpm-value text-white fw-semibold">0</span>
+                        </div>
+
+                        <div class="stat-item">
+                            <span class="label main-txt-color">Accuracy:</span>
+                            <span class="acurrecy-value fw-semibold">100%</span>
+                        </div>
+
+                        <div class="stat-item">
+                            <span class="label main-txt-color">Time:</span>
+                            <span class="time-value  fw-semibold">0:<span class="secounds">60</span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Controls -->
+                <div class="col-lg-6">
+                    <div class="d-flex flex-wrap justify-content-lg-end gap-3">
+
+                        <!-- Difficulty -->
+                        <div class="control-group">
+                            <span class="control-label main-txt-color me-1">Difficulty:</span>
+                            <button class="btn btn-outline-light btn-sm easy-btn">Easy</button>
+                            <button class="btn btn-outline-light btn-sm medium-btn">Medium</button>
+                            <button class="btn btn-outline-light btn-sm hard-btn">Hard</button>
+                        </div>
+
+                        <!-- Mode -->
+                        <div class="control-group">
+                            <span class="control-label main-txt-color me-1">Mode:</span>
+                            <button class="btn btn-outline-light btn-sm set-time">Timed (60s)</button>
+                            <button class="btn btn-outline-light btn-sm passege">Passage</button>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- === end statistics bar === -->
+
+
+    <!-- === start typing Box === -->
+    <section class="typing-area py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+
+                    <div class="typing-box">
+
+                        <!-- BLUR TARGET -->
+                        <div class="typing-content blurred">
+
+                            <!-- Text Layer -->
+                            <div class="text-layer">
+                                <p></p>
+                            </div>
+
+                            <!-- Input Layer -->
+                            <textarea class="input-layer" spellcheck="false"></textarea>
+
+                        </div>
+
+                        <!-- OVERLAY -->
+                        <div class="start-overlay ">
+                            <button class="btn btn-primary px-4 start-btn">
+                                Start Typing Test
+                            </button>
+                            <p class="mt-2 mb-0">
+                                or click the text to start typing
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <div class="text-center mt-3">
+                        <div class="content-divider"></div>
+                        <button class="btn restart-btn-custom mt-3"><img src="./imges/icon-restart.svg" alt="restart"
+                                class="me-2 restart-icon"> Restart Test</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- === end typing Box === -->
+
+
+    <!-- === result layer === -->
+    <section class="result py-5 d-none">
+        <div class="container text-center">
+            <img src="./imges/icon-completed.svg" alt="completed icon" class="complete-icon mb-4 img-fluid"
+                style="max-width:100px;">
+            <h2 class="text-white fs-1 mb-2">Test Complete!</h2>
+            <p class="main-txt-color fs-5 mb-4">Solid run. Keep pushing to beat your high score.</p>
+
+            <div class="d-flex justify-content-center gap-3 flex-wrap mb-4">
+                <!-- WPM Box -->
+                <div class="p-3  wpm-box  rounded text-start" ">
+                    <h3 class=" text-white fs-6">WPM</h3>
+                    <p class="res-wpm text-white fs-5 mb-0">0</p>
+                </div>
+
+                <!-- Accuracy Box -->
+                <div class="p-3  accuracy-box rounded text-start" ">
+                    <h3 class=" text-white fs-6">Accuracy</h3>
+                    <p class="text-white fs-5 mb-0">0%</p>
+                </div>
+
+                <!-- Characters Box -->
+                <div class="p-3  chars-box rounded text-start" ">
+                    <h3 class=" text-white fs-6">Characters</h3>
+                    <p class="text-white fs-5 mb-0">0</p>
+                </div>
+            </div>
+
+            <!-- Go Again Button -->
+            <button class="btn btn-lg d-flex align-items-center mx-auto goagain-btn">
+                <span>Go Again</span>
+                <i class="fa-solid fa-rotate-right"></i>
+            </button>
+
+        </div>
+    </section>
+
+
+
+
+    <!-- === end result layer === -->
+
+
+    <!-- === importing Js bootstarp -->
+    <script src="./js/js/bootstrap.bundle.min.js"></script>
+    <!-- == main js file == -->
+    <script src="./js/index.js"></script>
+</body>
+
+</html>
