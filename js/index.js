@@ -121,7 +121,7 @@ function initializeApp() {
   });
 
   // Load texts
-  fetch("data.json")
+  fetch("./data.json")
     .then((res) => res.json())
     .then((data) => {
       // Default = medium
@@ -265,7 +265,7 @@ function restartTest() {
   inputLayer.focus();
 
   // Re-render text
-  fetch("data.json")
+  fetch("./data.json")
     .then((res) => res.json())
     .then((data) => {
       const text = getRandomElement(data.medium).text;
