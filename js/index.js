@@ -38,10 +38,12 @@ function loadNewText(difficulty) {
         textData = data;
         currentText = getRandomElement(data[difficulty]).text;
         renderText(currentText);
+        inputLayer.focus();
       });
   } else {
     currentText = getRandomElement(textData[difficulty]).text;
     renderText(currentText);
+    inputLayer.focus();
   }
 }
 
@@ -51,7 +53,7 @@ function renderText(text) {
   const inputLayer = document.querySelector(".input-layer");
   textLayer.innerHTML = "";
   currentText = text;
-  // currentIndex = 0;
+  currentIndex = 0;
   inputLayer.value = "";
   inputLayer.selectionStart = 0;
   inputLayer.selectionEnd = 0;
@@ -146,20 +148,20 @@ function initializeApp() {
 
   easyBtn.addEventListener("click", () => {
     currentDifficulty = "easy";
-    resetGameState();
     loadNewText("easy");
+    resetGameState();
   });
 
   mediumBtn.addEventListener("click", () => {
     currentDifficulty = "medium";
-    resetGameState();
     loadNewText("medium");
+    resetGameState();
   });
 
   hardBtn.addEventListener("click", () => {
     currentDifficulty = "hard";
-    resetGameState();
     loadNewText("hard");
+    resetGameState();
   });
 }
 
@@ -174,6 +176,7 @@ document.querySelector(".set-time").addEventListener("click", () => {
 
 function startTimer() {
   if (!isTimedMode) return;
+  if (timerInterval) clearInterval(timerInterval);
   timerInterval = setInterval(() => {
     if (timeLeft > 0) {
       timeLeft--;
@@ -269,6 +272,7 @@ function resetGameState() {
   document.querySelector(".acurrecy-value").textContent = "100%";
   document.querySelector(".result").classList.add("d-none");
   inputLayer.disabled = false;
+  inputLayer.focus();
 }
 
 function restartTest() {
