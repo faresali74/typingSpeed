@@ -9,9 +9,10 @@ let correctChars = 0;
 let totalChars = 0;
 let accuracy = 100;
 let inputArray = [];
-let currentTextGlobal = "";
 let bestWpm = 0;
 let isTimedMode = false;
+let currentDifficulty = "medium";
+let textData = null;
 const inputLayer = document.querySelector(".input-layer");
 const resultSection = document.querySelector(".result");
 const typingArea = document.querySelector(".typing-area");
@@ -26,6 +27,22 @@ console.log();
 // Helpers
 function getRandomElement(array) {
   return array[Math.floor(Math.random() * array.length)];
+}
+
+// Load New Text
+function loadNewText(difficulty) {
+  if (!textData) {
+    fetch("./data.json")
+      .then((res) => res.json())
+      .then((data) => {
+        textData = data;
+        currentText = getRandomElement(data[difficulty]).text;
+        renderText(currentText);
+      });
+  } else {
+    currentText = getRandomElement(textData[difficulty]).text;
+    renderText(currentText);
+  }
 }
 
 // Render Text
@@ -102,7 +119,7 @@ function initializeApp() {
       }
       elapsedTime = Math.floor((Date.now() - startTime) / 1000);
 
-      if (currentIndex < currentTextGlobal.length) {
+      if (currentIndex < currentText.length) {
         currentIndex++;
         input.value += e.key;
         setActiveChar(currentIndex);
@@ -120,39 +137,31 @@ function initializeApp() {
     }
   });
 
-  // Load texts
-  fetch("./data.json")
-    .then((res) => res.json())
-    .then((data) => {
-      // Default = medium
-      currentTextGlobal = getRandomElement(data.medium).text;
-      renderText(currentTextGlobal);
+  // Load initial text
+  loadNewText("medium");
 
-      const easyBtn = document.querySelector(".easy-btn");
-      const mediumBtn = document.querySelector(".medium-btn");
-      const hardBtn = document.querySelector(".hard-btn");
+  // Difficulty buttons
+  const easyBtn = document.querySelector(".easy-btn");
+  const mediumBtn = document.querySelector(".medium-btn");
+  const hardBtn = document.querySelector(".hard-btn");
 
-      // Easy
-      easyBtn.addEventListener("click", () => {
-        currentTextGlobal = getRandomElement(data.easy).text;
-        renderText(currentTextGlobal);
-        resetTest();
-      });
+  easyBtn.addEventListener("click", () => {
+    currentDifficulty = "easy";
+    loadNewText("easy");
+    resetGameState();
+  });
 
-      // Medium
-      mediumBtn.addEventListener("click", () => {
-        currentTextGlobal = getRandomElement(data.medium).text;
-        renderText(currentTextGlobal);
-        resetTest();
-      });
+  mediumBtn.addEventListener("click", () => {
+    currentDifficulty = "medium";
+    loadNewText("medium");
+    resetGameState();
+  });
 
-      // Hard
-      hardBtn.addEventListener("click", () => {
-        currentTextGlobal = getRandomElement(data.hard).text;
-        renderText(currentTextGlobal);
-        resetTest();
-      });
-    });
+  hardBtn.addEventListener("click", () => {
+    currentDifficulty = "hard";
+    loadNewText("hard");
+    resetGameState();
+  });
 }
 
 // set time limit
@@ -202,9 +211,12 @@ function showResults() {
   inputLayer.disabled = true;
 }
 
-// Check if passage is completed in passage mode
+// Check if passage is completed
 function checkPassageCompletion() {
-  if (!isTimedMode && currentIndex >= currentTextGlobal.length) {
+  if (currentIndex >= currentText.length) {
+    if (timerInterval) {
+      clearInterval(timerInterval);
+    }
     resultSection.classList.remove("d-none");
     typingArea.classList.add("d-none");
     statistics.classList.add("d-none");
@@ -241,7 +253,9 @@ function updateStats() {
   document.querySelector(".wpm-value").textContent = wpm;
 }
 
-function resetTest() {
+function resetGameState() {
+  currentIndex = 0;
+  inputLayer.value = "";
   if (timerInterval) clearInterval(timerInterval);
   startTime = null;
   elapsedTime = 0;
@@ -259,33 +273,23 @@ function resetTest() {
 }
 
 function restartTest() {
-  resetTest();
-  currentIndex = 0;
-  inputLayer.value = "";
+  resetGameState();
+  loadNewText(currentDifficulty);
   inputLayer.focus();
-
-  // Re-render text
-  fetch("./data.json")
-    .then((res) => res.json())
-    .then((data) => {
-      const text = getRandomElement(data.medium).text;
-      renderText(text);
-    });
 }
 // go again button
 document.querySelector(".goagain-btn").addEventListener("click", () => {
-  resetTest();
+  resetGameState();
   resultSection.classList.add("d-none");
   typingArea.classList.remove("d-none");
   statistics.classList.remove("d-none");
-  initializeApp();
-  currentIndex = 0;
+  loadNewText(currentDifficulty);
+  inputLayer.focus();
 });
 
 // restart Btn
 document.querySelector(".restart-btn-custom").addEventListener("click", () => {
   restartTest();
-  initializeApp();
 });
 
 // DOM Ready
