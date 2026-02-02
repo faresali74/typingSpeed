@@ -88,7 +88,6 @@ function initializeApp() {
   const startButton = document.querySelector(".start-btn");
   const input = document.querySelector(".input-layer");
 
-  // Make input read-only to prevent browser interference
   input.readOnly = true;
 
   // Start button
@@ -147,20 +146,20 @@ function initializeApp() {
 
   easyBtn.addEventListener("click", () => {
     currentDifficulty = "easy";
-    loadNewText("easy");
     resetGameState();
+    loadNewText("easy");
   });
 
   mediumBtn.addEventListener("click", () => {
     currentDifficulty = "medium";
-    loadNewText("medium");
     resetGameState();
+    loadNewText("medium");
   });
 
   hardBtn.addEventListener("click", () => {
     currentDifficulty = "hard";
-    loadNewText("hard");
     resetGameState();
+    loadNewText("hard");
   });
 }
 
